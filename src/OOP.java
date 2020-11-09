@@ -7,9 +7,19 @@ public class OOP {
 //        System.out.println(Calc.getSubtractionResult());
 //        System.out.println(Calc.getMultiplicationResult());
 //        System.out.println(Calc.getDivisionResult());
-        Account myAccount = new Account("502","Ken",
-                "yemai", "43", 500.0);
-        myAccount.withdraw(501);
-        myAccount.deposit(200);
+//        Account myAccount = new Account("502","Ken",
+//                "yemai", "43", 500.0);
+//        myAccount.withdraw(501);
+//        myAccount.deposit(200);
+        Printer myPrinter = new Printer(55.00,10,false);
+        System.out.println("The current number of pages printed is " + myPrinter.getNumberOfPagesPrinted());
+        myPrinter.printPages(3);
+        System.out.println("The current number of pages printed is " + myPrinter.getNumberOfPagesPrinted());
+        System.out.println("The amount of toner in the machine " + myPrinter.getTonerLevels());
+        myPrinter.fillToner(33.5);
+        System.out.println("The amount of toner in the machine " + myPrinter.getTonerLevels());
+        myPrinter.fillToner(33.5);
+        System.out.println("The amount of toner in the machine " + myPrinter.getTonerLevels());
+
     }
 }
