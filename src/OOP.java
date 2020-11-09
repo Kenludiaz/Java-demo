@@ -12,6 +12,4 @@ public class OOP {
         myAccount.withdraw(501);
         myAccount.deposit(200);
     }
-    public static void Wall {
-    }
 }
