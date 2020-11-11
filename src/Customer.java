@@ -17,7 +17,8 @@ public class Customer {
         this.transactions.add(transaction);
     }
 
-    public double getTransaction(int index) {
-       return this.transactions.get(index);
+    public ArrayList<Double> getTransactions() {
+       return this.transactions;
     }
+
 }
