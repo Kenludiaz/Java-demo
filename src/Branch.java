@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Branches {
+public class Branch {
     private ArrayList<Customer> customers = new ArrayList<Customer>();
 
     public void addCustomer(String name, Double initialTransaction) {
