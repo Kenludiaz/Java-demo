@@ -53,7 +53,7 @@ public class Album {
         }
         for (Song item :
                 Songs) {
-            if (item.getTitle().toLowerCase() == songName.toLowerCase()) {
+            if (item.getTitle().toLowerCase().equals(songName.toLowerCase())) {
                 return true;
             }
         }
@@ -63,7 +63,7 @@ public class Album {
     public double findSongDuration(String songName) {
         for (Song item :
                 Songs) {
-            if (item.getTitle() == songName) {
+            if (item.getTitle().equals(songName)) {
                 return  item.getDuration();
             }
         }

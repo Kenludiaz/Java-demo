@@ -1,3 +1,4 @@
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Main {
@@ -22,8 +23,16 @@ public class Main {
         hotWorkout.addSong(beachBirthday, "Tequila");
         hotWorkout.addSong(christmasSpecial, "My Last");
 
+        while (scanner.hasNextInt()) {
+            ListIterator<Song> itr = hotWorkout.playList.listIterator();
 
-        switch (action) {
+            switch (scanner.nextInt()) {
+                case 0:
+                    return;
+                case 1:
+
+            }
+        }
 
         }
 
