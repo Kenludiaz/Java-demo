@@ -1,36 +1,41 @@
 
 
 public abstract class ListItem  {
-    private ListItem next;
-    private ListItem previous;
-    private String value;
+    protected ListItem next = null;
+    protected ListItem previous = null;
 
-    public void setNext(ListItem next) {
-        this.next = next;
-        next.previous = this;
-    }
+    protected Object value;
 
-    public void setPrevious(ListItem previous) {
-        this.previous = previous;
-        previous.next = this;
-    }
+    abstract ListItem setNext(ListItem next);
+    abstract ListItem setPrevious(ListItem previous);
 
-    public ListItem(String value) {
+    protected ListItem(Object value) {
         this.value = value;
     }
 
-    public void goNext() {
-        if (!this.hasNext()) {
-            System.out.println("No value next to it.");
-            return;
-        }
-        this = next;
-    }
-
+    abstract ListItem goNext();
     public boolean hasNext() {
         if (this.next != null) {
             return true;
         }
         return false;
+    }
+
+    abstract ListItem goPrevious();
+    public boolean hasPrevious() {
+        if (this.previous != null) {
+            return true;
+        }
+        return false;
+    }
+
+    abstract int compareTo(ListItem item);
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
     }
 }
