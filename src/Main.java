@@ -1,8 +1,23 @@
 
 public class Main {
     public static void main(String[] args) {
-        //< T extends animal> gets rid of the need to cast from using <T>
-        // Parameterized typing
+        League<SoccerTeam> SoccerLeague = new League<>();
+        SoccerTeam Mudslingers = new SoccerTeam("Mudslingers");
+        SoccerTeam Netters = new SoccerTeam("Netters");
+        SoccerTeam Brazilers = new SoccerTeam("Brazilers");
+        BasketballTeam Hoopers = new BasketballTeam("Hoopers");
+
+        SoccerLeague.addTeam(Mudslingers);
+        SoccerLeague.addTeam(Netters);
+        SoccerLeague.addTeam(Brazilers);
+//        SoccerLeague.addTeam(Hoopers);
+//        SoccerLeague.addTeam("Hello");
+        Mudslingers.wonAgainst(Hoopers);
+        Mudslingers.wonAgainst(Netters);
+        Netters.wonAgainst(Mudslingers);
+        Mudslingers.tiedAgainst(Netters);
+
+        SoccerLeague.showLeagueTable();
     }
 
 }
