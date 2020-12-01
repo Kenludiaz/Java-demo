@@ -1,76 +1,107 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-public class Main {
-    private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
-
-    public static void main(String[] args) {
-	    Scanner scanner = new Scanner(System.in);
-
-        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java"));
-        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building"));
-        locations.put(2, new Location(2, "You are at the top of a hill"));
-        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring"));
-        locations.put(4, new Location(4, "You are in a valley beside a stream"));
-        locations.put(5, new Location(5, "You are in the forest"));
-
-        locations.get(1).addExit("W", 2);
-        locations.get(1).addExit("E", 3);
-        locations.get(1).addExit("S", 4);
-        locations.get(1).addExit("N", 5);
-//        locations.get(1).addExit("Q", 0);
-
-        locations.get(2).addExit("N", 5);
-//        locations.get(2).addExit("Q", 0);
-
-        locations.get(3).addExit("W", 1);
-//        locations.get(3).addExit("Q", 0);
-
-        locations.get(4).addExit("N", 1);
-        locations.get(4).addExit("W", 2);
-//        locations.get(4).addExit("Q", 0);
-
-        locations.get(5).addExit("S", 1);
-        locations.get(5).addExit("W", 2);
-//        locations.get(5).addExit("Q", 0);
-
-        int loc = 1;
-        while(true) {
-            System.out.println(locations.get(loc).getDescription());
-            if(loc == 0) {
-                break;
-            }
-
-            Map<String, Integer> exits = locations.get(loc).getExits();
-            System.out.print("Available exits are ");
-            for(String exit: exits.keySet()) {
-                System.out.print(exit + ", ");
-            }
-            System.out.println();
-
-            String input = scanner.nextLine().toUpperCase();
-            String[] inputs = input.split(" ");
-            String direction = "Q";
-            if (input.contains("W") || input.contains("WEST")) {
-                direction = "W";
-            }else if (input.contains("N") || input.contains("NORTH")) {
-                direction = "N";
-            }else if (input.contains("E") || input.contains("EAST")) {
-                direction = "E";
-            }else if (input.contains("S") || input.contains("SOUTH")) {
-                direction = "S";
-            }
-
-
-            if(exits.containsKey(direction)) {
-                loc = exits.get(direction);
-
-            } else {
-                System.out.println("You cannot go in that direction");
-            }
-        }
-
-
-    }
-}
+//
+//
+//public class Main {
+////    private static Map<String, HeavenlyBody> solarSystem = new HashMap<>();
+////    private static Set<HeavenlyBody> planets = new HashSet<>();
+////
+////    public static void main(String[] args) {
+////        HeavenlyBody temp = new HeavenlyBody("Mercury", 88, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        temp = new HeavenlyBody("Venus", 225, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        temp = new HeavenlyBody("Earth", 365, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        HeavenlyBody tempMoon = new HeavenlyBody("Moon", 27, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon);
+////
+////        temp = new HeavenlyBody("Mars", 687, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        tempMoon = new HeavenlyBody("Deimos", 1.3, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Mars
+////
+////        tempMoon = new HeavenlyBody("Phobos", 0.3, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Mars
+////
+////        temp = new HeavenlyBody("Jupiter", 4332, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        tempMoon = new HeavenlyBody("Io", 1.8, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Jupiter
+////
+////        tempMoon = new HeavenlyBody("Europa", 3.5, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Jupiter
+////
+////        tempMoon = new HeavenlyBody("Ganymede", 7.1, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Jupiter
+////
+////        tempMoon = new HeavenlyBody("Callisto", 16.7, bodyType);
+////        solarSystem.put(tempMoon.getName(), tempMoon);
+////        temp.addMoon(tempMoon); // temp is still Jupiter
+////
+////        temp = new HeavenlyBody("Saturn", 10759, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        temp = new HeavenlyBody("Uranus", 30660, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        temp = new HeavenlyBody("Neptune", 165, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        temp = new HeavenlyBody("Pluto", 248, bodyType);
+////        solarSystem.put(temp.getName(), temp);
+////        planets.add(temp);
+////
+////        System.out.println("Planets");
+////        for(HeavenlyBody planet : planets) {
+////            System.out.println("\t" + planet.getName());
+////        }
+////
+////        HeavenlyBody body = solarSystem.get("Mars");
+////        System.out.println("Moons of " + body.getName());
+////        for(HeavenlyBody jupiterMoon: body.getSatellites()) {
+////            System.out.println("\t" + jupiterMoon.getName());
+////        }
+////
+////        Set<HeavenlyBody> moons = new HashSet<>();
+////        for(HeavenlyBody planet : planets) {
+////            moons.addAll(planet.getSatellites());
+////        }
+////
+////        System.out.println("All Moons");
+////        for(HeavenlyBody moon : moons) {
+////            System.out.println("\t" + moon.getName());
+////        }
+////
+////        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842, bodyType);
+////        planets.add(pluto);
+////
+////        for(HeavenlyBody planet : planets) {
+////            System.out.println(planet.getName() + ": " + planet.getOrbitalPeriod());
+////        }
+////
+////        Object o = new Object();
+////        o.equals(o);
+////        "pluto".equals("");
+////
+////
+////
+////    }
+//}
