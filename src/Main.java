@@ -1,5 +1,3 @@
-package src.com.timbuchalka;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
