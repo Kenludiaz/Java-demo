@@ -22,4 +22,12 @@ public class BankAccount {
     public double getBalance() {
         return balance;
     }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void printAccountNumber() {
+        System.out.println("The account number is " + getAccountNumber());
+    }
 }
