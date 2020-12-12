@@ -1,10 +1,8 @@
-
-
 public class Main {
 
 
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("12345-678", 1000.00);
+        BA account = new BA("12345-678", 1000.00);
 
         Thread t1 =  new Thread() {
             @Override
