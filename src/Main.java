@@ -1,32 +1,26 @@
+import java.util.function.Function;
+
 public class Main {
-
-
     public static void main(String[] args) {
-        BA account = new BA("12345-678", 1000.00);
-
-        Thread t1 =  new Thread() {
-            @Override
-            public void run() {
-                account.deposit(300);
-                System.out.println("Thread 1: Deposited");
-                account.withdraw(50);
-                System.out.println("Thread 1: Withdrew");
+        Function<String, String> lambda = (String source) -> {
+        StringBuilder returnVal = new StringBuilder();
+        for (int i = 0; i < ((String) source).length(); i++) {
+            if (i % 2 == 1) {
+                returnVal.append(source.charAt(i));
             }
-        };
-        Thread t2 = new Thread() {
-            @Override
-            public void run() {
-                account.deposit(203.75);
-                System.out.println("Thread 2: Deposited");
-                account.withdraw(100);
-                System.out.println("Thread 2: Withdrew");
-            }
-        };
-        t1.start();
-        t2.start();
-
-        System.out.println("Current Balance is "+ account.getBalance());
-
-
+        }
+        return returnVal.toString();
+    };
+//        Runnable runnable =
+//        () -> {
+//            String myString = "Let's Split this up into an array";
+//            String[] parts = myString.split(" ");
+//            for (String part : parts) {
+//                System.out.println(part);
+//            }
+//
+//        };
+        String result = lambda.apply("1234567890");
+        System.out.println(result);
     }
 }
