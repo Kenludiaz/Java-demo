@@ -1,4 +1,5 @@
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,10 +26,29 @@ public class Main {
 //
 //        System.out.println(supplierResult);
 
-
+    List<String> topNames = Arrays.asList(
+            "Amelia",
+            "Olivia",
+            "emily",
+            "Isla",
+            "Ava",
+            "Oliver",
+            "Jack",
+            "Charlie",
+            "harry",
+            "Javob"
+    );
+        topNames.stream()
+                .map(s -> {
+                    String upper = (s.substring(0, 1)).toUpperCase();
+                    return upper + s.substring(1);
+                })
+                .peek(System.out::println)
+                .sorted(String::compareTo)
+                .forEach(System.out::println);
     }
-
-    public static String everySecond(Function<String, String> func, String source) {
-        return func.apply(source);
-    }
+//
+//    public static String everySecond(Function<String, String> func, String source) {
+//        return func.apply(source);
+//    }
 }
