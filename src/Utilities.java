@@ -23,11 +23,23 @@ public class Utilities {
         StringBuilder sb = new StringBuilder();
         char[] string = source.toCharArray();
 
-        for (int i = 0; i < string.length; i++) {
-            if (string[i] != string[i++]) {
+        for (int i = 0; i < string.length - 1; i++) {
+            if (string[i] != string[i + 1]) {
                 sb.append(string[i]);
             }
         }
+        sb.append(source.charAt(source.length() - 1));
         return sb.toString();
+    }
+
+    public int converter(int a, int b) {
+        return (a/b) + (a * 30) -2;
+    }
+
+    public String nullIfOddLength(String source) {
+        if (source.length() % 2 == 0) {
+            return source;
+        }
+        return null;
     }
 }
