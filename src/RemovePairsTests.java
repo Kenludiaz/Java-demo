@@ -4,6 +4,8 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(Parameterized.class)
 
 public class RemovePairsTests {
@@ -17,7 +19,7 @@ public class RemovePairsTests {
         this.input = input;
         this.output = output;
     }
-
+    @Parameterized.Parameters
     public static Collection<Object> testConditions() {
             return Arrays.asList(new Object [][]
             {{"ABCDEFF", "ABCDEF"},
@@ -36,7 +38,7 @@ public class RemovePairsTests {
 
     @org.junit.Test
     public void testRemovePairsArray() throws Exception {
-        assertEquals()
+        assertEquals(output, utilities.removePairs(input));
     }
 
 }
