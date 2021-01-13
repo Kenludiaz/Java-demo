@@ -1,8 +1,8 @@
 package com.ludiaz.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Datasource {
 
@@ -13,12 +13,12 @@ public class Datasource {
             + DB_NAME;
 
     public static final String TABLE_ALBUMS = "albums";
-    public static final String COLUMN_ALBUM_ID = "._id";
+    public static final String COLUMN_ALBUM_ID = "_id";
     public static final String COLUMN_ALBUM_NAME = "name";
     public static final String COLUMN_ALBUM_ARTIST = "artist";
 
-    public static final String ARTISTS = "artists";
-    public static final String COLUMN_ARTIST_ID = "._id";
+    public static final String TABLE_ARTISTS = "artists";
+    public static final String COLUMN_ARTIST_ID = "_id";
     public static final String COLUMN_ARTIST_NAME = "name";
 
     public static final String TABLE_SONGS = "songs";
@@ -44,6 +44,27 @@ public class Datasource {
             e.printStackTrace();
         }
     }
+
+    public List<Artist> queryArtists() {
+
+
+        List artists = new ArrayList();
+        try(Statement statement = conn.createStatement()) {
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS);
+
+            while (results.next()) {
+               Artist artist = new Artist();
+               artist.setName(results.getString(COLUMN_ARTIST_NAME));
+               artist.setId(results.getInt(COLUMN_ARTIST_ID));
+               artists.add(artist);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error " + e.getMessage());
+            return null;
+        }
+        return artists;
+    }
+
 
 
 }
